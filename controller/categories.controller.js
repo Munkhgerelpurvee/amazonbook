@@ -15,12 +15,13 @@ Controller ==> model and view хоёрыг хооронд нь холбодог 
 
 
 */
-// Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.
+// Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.  middleware бол гурван аргументтай энгийн функц юм.
 
 exports.getCategories = (req, res, next) => {
     res.status(200).json({
         success:true,
         data:"Бүх категоруудыг энд өгнө...",
+        user: req.userId,
        
     })
 

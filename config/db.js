@@ -6,7 +6,7 @@ const connectDB = async () => {
         process.env.MONGODB_URI
     );
 
-    console.log(`mongoDB холбогдлоо : ${connection.connection.host}`);
+    console.log(`mongoDB холбогдлоо : ${connection.connection.host}`.rainbow);
 
 };
 module.exports = connectDB;

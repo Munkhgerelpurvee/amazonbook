@@ -9,6 +9,8 @@ var rfs = require('rotating-file-stream') // version 2.x
 // npm -ийн library
 var morgan = require('morgan');
 const  connectDB = require("./config/db");
+const colors = require("colors");
+
 
 // Аппын тохиргоог process.env - рүү ачаалах
 dotenv.config({path: "./config/config.env"});
@@ -61,7 +63,7 @@ const server = app.listen(process.env.PORT,
 
 */
 process.on("unhandledRejection", (err, promise) => {
-console.log(`Алдаа гарлаа: ${err.message}`);
+console.log(`Алдаа гарлаа: ${err.message}`.cyan.underline.bold);
 server.close(() => {
   process.exit(1);
 })

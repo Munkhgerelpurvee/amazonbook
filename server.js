@@ -54,7 +54,7 @@ app.use("/api/v1/categories", categoriesRoutes);
 
 
 const server = app.listen(process.env.PORT,
-     console.log(`Express server: ${process.env.PORT} порт дээр аслаа ... `));
+     console.log(`Express server: ${process.env.PORT} порт дээр аслаа ... `.red));
 
 
 // Бүх алдааг нэгдсэн нэг газар барьж авах

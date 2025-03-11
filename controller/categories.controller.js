@@ -1,21 +1,53 @@
 const Category = require("../models/categories.model")
 // Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.  middleware бол гурван аргументтай энгийн функц юм.
 
-exports.getCategories = (req, res, next) => {
-    res.status(200).json({
-        success:true,
-        data:"Бүх категоруудыг энд өгнө...",
-        user: req.userId,
-       
-    })
+exports.getCategories = async (req, res, next) => {
+    try{
+        const allCategories = await Category.find();
+        res.status(200).json({
+            success:true,
+            data:allCategories,
+           
+        })
+    } catch(err) {
+
+        res.status(400).send( {
+            success:false,
+                error:err,
+
+        });
+
+    }
 
 };
 
-exports.getCategory = (req, res, next) => {
-    res.status(200).send({
-        success:true,
-        data:`${req.params.id} id-тай категорийн мэдээллийг өгнө...`
-    })
+exports.getCategory = async (req, res, next) => {
+    try{
+        const oneCategory = await Category.findById(req.params.id);
+
+        if(oneCategory) {
+            res.status(200).send({
+                success:true,
+                data:oneCategory
+            })
+
+        } else {
+            res.status(400).send({
+                success:false,
+                error: req.params.id + "id-тай категори алга байна."
+    
+            });
+
+        }
+
+    } catch(err) {
+        res.status(400).send({
+            success:false,
+            error:err
+
+        });
+
+    }
 };
 
 

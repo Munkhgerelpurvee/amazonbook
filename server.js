@@ -41,6 +41,34 @@ var accessLogStream = rfs.createStream('access.log', {
 })
 
 const app = express();
+// body parser 
+
+/*
+app.use(express.json()); энэ requist обьектоор орж ирсэн message болгоны body-хэсгийг нь шалгаад тэр өгөгдөл нь хэрвээ JSON өгөгдөл байх юм бол түүнийг requist -ийн body гэдэг хувьсагч дотор хийгээд өгөөрэй гэсэн утга илэрхийлнэ. 
+Тэгэхээр ингэж console.log("DATA: ", req.body); харах боломжтой болох байгаа.
+exports.createCategory = (req, res, next) => {
+    console.log("DATA requist.body: ", req.body);
+    res.status(200).json({
+        success:true,
+        data:"Шинэ категори үүсгэнэ..."
+    });
+}; энд үүнийг хааж байгаад // app.use(express.json()); postman дээр post хүсэлт илгээхэд console дээр:
+
+C:\Users\admin\OneDrive\Desktop\amazon-api
+Express server: 8000 порт дээр аслаа ... 
+mongoDB холбогдлоо : amazon-shard-00-02.ai79y.mongodb.net
+express deprecated req.host: Use req.hostname instead middleware\logger.middleware.js:110:56
+POST http://localhost/api/v1/categories
+DATA requist.body:  undefined байна. Харин одоо app.use(express.json()); --- үүнийг нээж байгаад postman дээр post хүсэлт илгээж ажиллуулахад :
+
+C:\Users\admin\OneDrive\Desktop\amazon-api
+Express server: 8000 порт дээр аслаа ... 
+mongoDB холбогдлоо : amazon-shard-00-00.ai79y.mongodb.net
+express deprecated req.host: Use req.hostname instead middleware\logger.middleware.js:110:56
+POST http://localhost/api/v1/categories
+DATA requist.body:  { name: 'Уран зохиол' } гэж console дээр ирж байна. 
+*/
+app.use(express.json());
 
 // logger middleware 
 app.use(logger);

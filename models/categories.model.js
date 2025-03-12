@@ -39,7 +39,7 @@ const CategorySchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Category", CategorySchema);
+module.exports = mongoose.model("CategoryModel", CategorySchema);
 
     /*
     module.exports = mongoose.model("Category", CategorySchema); бид энд үүсгэсэн Category нэртэй моделийг ашиглаад Category-гэдэг обьект руу mongoose.write, read, insert , delete, search хийх зэргийг mongoose бидэнд гаргаж өгнө.

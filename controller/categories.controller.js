@@ -1,9 +1,9 @@
-const Category = require("../models/categories.model")
+const CategoryModel = require("../models/categories.model")
 // Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.  middleware бол гурван аргументтай энгийн функц юм.
 
 exports.getCategories = async (req, res, next) => {
     try{
-        const allCategories = await Category.find();
+        const allCategories = await CategoryModel.find();
         res.status(200).json({
             success:true,
             data:allCategories,
@@ -23,7 +23,7 @@ exports.getCategories = async (req, res, next) => {
 
 exports.getCategory = async (req, res, next) => {
     try{
-        const oneCategory = await Category.findById(req.params.id);
+        const oneCategory = await CategoryModel.findById(req.params.id);
 
         if(oneCategory) {
             res.status(200).send({
@@ -34,7 +34,7 @@ exports.getCategory = async (req, res, next) => {
         } else {
             res.status(400).send({
                 success:false,
-                error: req.params.id + "id-тай категори алга байна."
+                error: req.params.id + "id-тай категори АЛГА байна.",
     
             });
 
@@ -56,7 +56,7 @@ exports.createCategory = async  (req, res, next) => {
     // database-д үүссэн категори categotyAtlas---д ороод ирнэ. 
     try {
 
-        const categoryAtlas = await Category.create(req.body);
+        const categoryAtlas = await CategoryModel.create(req.body);
              res.status(200).json({
                  success:true,
                  data:categoryAtlas

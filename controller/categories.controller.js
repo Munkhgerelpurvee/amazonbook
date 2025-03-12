@@ -1,5 +1,7 @@
 const CategoryModel = require("../models/categories.model")
 // Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.  middleware бол гурван аргументтай энгийн функц юм.
+const MyError = require("../utils/myError")
+
 
 exports.getCategories = async (req, res, next) => {
     try{
@@ -40,14 +42,13 @@ errorHandler--- буюу алдааг боловсруулагч гэдэг нэ
 next(err)
 } болгож өөрчилье.
 
+
+
 */
 
         if(!oneCategory) {
-           return res.status(400).send({
-                success:false,
-                error: req.params.id + "id-тай категори АЛГА байна.",
-                
-            });
+
+            throw new MyError(req.params.id + "id-тай категори АЛГА байна ШҮҮ!!!.", 400)
             
         };
         res.status(200).send({
@@ -90,11 +91,8 @@ exports.updateCategory = async (req, res, next) => {
         });
 
         if(!upCategory) {
-          return  res.status(400).send({
-                success:false,
-                error: req.params.id + "id-тай категори АЛГА.",
-
-            })
+            throw new MyError(req.params.id + "id-тай категори АЛГА байгаад өөрчилж чадаагүй ШҮҮ!!!.", 400)
+        
         };
         res.status(200).json({
             success:true,
@@ -112,11 +110,7 @@ exports.deleteCategory = async(req, res, next) => {
         const delCategory = await CategoryModel.findByIdAndDelete(req.params.id);
 
         if(!delCategory) {
-            return res.status(400).send({
-                 success:false,
-                 error: req.params.id + "id-тай категори АЛГА тул устгаж чадсангүй.",
-                 
-             });
+            throw new MyError(req.params.id + "id-тай категори АЛГА байгаад устгаж чадаагүй ШҮҮ!!!.", 400)
              
          };
     

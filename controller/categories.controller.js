@@ -90,16 +90,59 @@ exports.createCategory = async  (req, res, next) => {
     }
 };
 
-exports.updateCategory = (req, res, next) => {
-    res.status(200).json({
-        success:true,
-        data:`Ийм ${req.params.id} ID-тай категорийг өөрчилнө...`
-    })
+exports.updateCategory = async (req, res, next) => {
+
+    try{
+
+        const upCategory = await CategoryModel.findByIdAndUpdate(req.params.id, req.body, {
+            new:true,
+            runValidators:true
+        });
+
+        if(!upCategory) {
+          return  res.status(400).send({
+                success:false,
+                error: req.params.id + "id-тай категори АЛГА.",
+
+            })
+        };
+        res.status(200).json({
+            success:true,
+            data:upCategory
+        })
+
+    } catch(err) {
+       res.status(400).json({
+        success:false,
+        error:err
+       }) 
+    }
 };
 
-exports.deleteCategory = (req, res, next) => {
-    res.status(200).send({
-        success:true,
-        data:`${req.params.id} ID-тай категорийг устгана...`
-    })
+exports.deleteCategory = async(req, res, next) => {
+
+    try{
+        const delCategory = await CategoryModel.findByIdAndDelete(req.params.id);
+
+        if(!delCategory) {
+            return res.status(400).send({
+                 success:false,
+                 error: req.params.id + "id-тай категори АЛГА тул устгаж чадсангүй.",
+                 
+             });
+             
+         };
+    
+        res.status(200).send({
+            success:true,
+            data:req.params.id + "id-тай категорийг амжилттай устгалаа."
+        })
+
+    } catch(err) {
+        res.status(400).json({
+            success:false,
+            error:err
+        })
+
+    }
 }

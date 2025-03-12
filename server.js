@@ -78,6 +78,10 @@ app.use(morgan('combined', { stream: accessLogStream }));
 
 
 // middleware ашиглан route-ийг app confonent-той хоблож өгөх
+/*
+categoriesRoutes гэснийг URL--- дээр ямар хаягаар орж ирэх юм бол энэ categoriesRoutes--- нь хариуцах юм бэ? гэдгийг холбож өгдөг байгаа.
+
+*/
 app.use("/api/v1/categories", categoriesRoutes);
 
 

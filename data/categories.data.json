@@ -1,0 +1,18 @@
+[
+    {
+        "_id": "67d0dd5dca76d9d06998ba02",
+        "name": "Тэнгэр эцэг тандаа талархлаа",
+        "description": "Horrors бүгдийг эндээс унших боломжтой!",
+        "photo": "horror.jpg",
+        "createdAt": "2025-03-12T01:03:25.758Z",
+        "__v": 0
+    },
+    {
+        "_id": "67d105816840ecbe77fe503e",
+        "name": "талархлаа 1234.mn багш нартаа",
+        "description": "Horrors3",
+        "photo": "Tugus.ipg",
+        "createdAt": "2025-03-12T03:54:41.220Z",
+        "__v": 0
+    }
+]

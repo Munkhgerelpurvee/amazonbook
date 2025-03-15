@@ -14,5 +14,23 @@
         "photo": "Tugus.ipg",
         "createdAt": "2025-03-12T03:54:41.220Z",
         "__v": 0
+    },
+    {
+        "_id": "67d58ac72f91f0790d99006a",
+        "name": "Орчин үеийн бизнес",
+        "description": "Бизнесмэн хэрхэн болох вэ!",
+        "photo": "horror.jpg",
+        "createdAt": "2025-03-15T14:12:23.532Z",
+        "slug": "orchin-ueiyn-biznes",
+        "__v": 0
+    },
+    {
+        "_id": "67d58ade2f91f0790d99006c",
+        "name": "Хэрхэн сайн хөгжүүлэгч болох вэ",
+        "description": "Бизнесмэн хэрхэн болох вэ!",
+        "photo": "horror.jpg",
+        "createdAt": "2025-03-15T14:12:46.550Z",
+        "slug": "herhen-sayn-hogzhuulegch-boloh-ve",
+        "__v": 0
     }
 ]

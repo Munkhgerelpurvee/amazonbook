@@ -1,5 +1,7 @@
 // Lesson26 Mongoose дээр Категорийн моделийг үүсгэх
 const mongoose = require("mongoose");
+// import { transliterate as tr, slugify } from 'transliteration';
+const {transliterate,slugify } = require("transliteration");
 // Категорийн Schema -үүсгэнэ. Schema -дотор категори маань юу юунаас тогтохыг зааж өгнө.
 
 const CategorySchema = new mongoose.Schema({
@@ -13,6 +15,7 @@ const CategorySchema = new mongoose.Schema({
         */
         maxlength:[50, "Категорийн нэрийн урт дээд тал нь 50 тэмдэгт байх ёстой."]
     },
+    slug:String,
     description: {
         type: String,
         required:[true, "Категорийн тайлбарыг заавал оруулах ёстой."],
@@ -37,6 +40,16 @@ const CategorySchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+});
+// Хадгалахын өмнө slug үүсгэх буюу шинээр категори үүсэхийн өмнө pre.middleware ажиллана
+
+CategorySchema.pre('save', function(next) {
+  // name - ийг хөрвүүлэх ажлыг энд хийнэ
+//   console.log("pre middleware form cat.Model");
+// console.log(this.name);
+// slugify нь Монгол нэрийг галиглаад дундуур нь зураастай болгож өгнө
+this.slug = slugify(this.name);
+  next();
 });
 
 module.exports = mongoose.model("CategoryModel", CategorySchema);

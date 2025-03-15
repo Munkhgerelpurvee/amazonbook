@@ -63,3 +63,5 @@ node seeder.js -i import
  } else if (process.argv[2] == "-d") {
   deleteData();
  };
+
+//  node seeder.js -d node seeder.js -i

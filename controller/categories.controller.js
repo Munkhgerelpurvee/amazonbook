@@ -2,12 +2,22 @@ const CategoryModel = require("../models/categories.model")
 // Бүх категорийг гаргаж өгдөг контроллер функц мөн бид бүх функцээ middleware хэлбэрээр бичнэ. middleware function нь requist, response, next гэсэн 3 parameters хүлээн авдаг.  middleware бол гурван аргументтай энгийн функц юм.
 const MyError = require("../utils/myError");
 const asyncHandler = require("../middleware/asyncHandler.middleware")
+//{{url}}/api/v1/categories?select=name slug averageRating&averageRating[$gt]=5
+// {{url}}/api/v1/categories?select=name slug averageRating&averageRating[$gt]=5&sort=name
+// {{url}}/api/v1/categories?select=name slug averageRating&averageRating[$gt]=5&sort=-name
+// {{url}}/api/v1/categories?select=name slug averageRating averagePrice&averageRating[$gt]=5&sort=avaerageRating -averagePrice ---энд дундаж рэйтингээр шүүгээд адилхан 9 байвал давхар дундаж үнэ нь ихээсээ бага руу эрэмбэлэгдэхээр sort хийж байна.
 
 
 exports.getCategories = asyncHandler(async (req, res, next) => {
-        console.log(req.query);
+    const select = req.query.select;
+    delete req.query.select;
+
+    const sort1 = req.query.sort;
+    delete req.query.sort;
+
+        console.log(req.query, select, sort1);
         
-        const allCategories = await CategoryModel.find(req.query);
+        const allCategories = await CategoryModel.find(req.query, select).sort(sort1)
         res.status(200).json({
             success:true,
             data:allCategories,

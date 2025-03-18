@@ -5,8 +5,9 @@ const asyncHandler = require("../middleware/asyncHandler.middleware")
 
 
 exports.getCategories = asyncHandler(async (req, res, next) => {
-    
-        const allCategories = await CategoryModel.find();
+        console.log(req.query);
+        
+        const allCategories = await CategoryModel.find(req.query);
         res.status(200).json({
             success:true,
             data:allCategories,

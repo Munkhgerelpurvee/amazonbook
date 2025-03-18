@@ -49,6 +49,8 @@ CategorySchema.pre('save', function(next) {
 // console.log(this.name);
 // slugify нь Монгол нэрийг галиглаад дундуур нь зураастай болгож өгнө
 this.slug = slugify(this.name);
+this.averageRating = Math.floor(Math.random()*10) + 1;
+this.averagePrice = Math.floor(Math.random()*100000) + 3000;
   next();
 });
 

@@ -32,5 +32,16 @@
         "createdAt": "2025-03-15T14:12:46.550Z",
         "slug": "herhen-sayn-hogzhuulegch-boloh-ve",
         "__v": 0
+    },
+    {
+        "_id": "67d63889e893b48a425bc228",
+        "name": "Шинжлах ухаан",
+        "description": "Квант физикийн онол!",
+        "photo": "science.jpg",
+        "createdAt": "2025-03-16T02:33:45.151Z",
+        "slug": "shinzhlah-uhaan",
+        "averageRating": 4,
+        "averagePrice": 13358,
+        "__v": 0
     }
 ]

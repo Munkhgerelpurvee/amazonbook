@@ -6,6 +6,7 @@ const colors = require("colors");
 // JSON-оос уншаад database рүү бичнэ. Тиймээс database-тэй холбогддог тохиргоо config.env дотор явж байгаа. Config-той ажиллах dotenv - гэдэг library суулгасан.
 const dotenv = require("dotenv");
 const CategoryModel = require("./models/categories.model");
+const BookModel = require("./models/books.model");
 
 dotenv.config({path:"./config/config.env"});
 
@@ -22,6 +23,8 @@ __dirname нь одоо энэ файл буюу seeder.js-file нь ямар з
 Одоо string-ees object руу хувиргана. Одоо categoriesSeeder нь массив болоод ороод ирнэ.
 */
 const categoriesSeeder = JSON.parse(fs.readFileSync(__dirname + "/data/categories.data.json", "utf-8"));
+// book json файлаас уншина
+const booksSeeder = JSON.parse(fs.readFileSync(__dirname + "/data/books.data.json", "utf-8"));
 
 // Одоо энэ үүссэн categoriesSeeder нэртэй үүссэн обьектоо ашиглаж mongoDb-рүүгээ файлаа шидэж хийж өгье. 
 /*
@@ -33,6 +36,7 @@ CategoryModel.create(categoriesSeeder); эндээс categoriesSeeder-ийг у�
 importData = async () => {
     try{
      await CategoryModel.create(categoriesSeeder);
+     await BookModel.create(booksSeeder);
      console.log("Өгөгдлийг seeder.js-c mongooseDB руу импортлолоо...");
     } catch(err) {
      console.log(err);
@@ -45,6 +49,7 @@ deleteData = async ( ) => {
     try{
         // юу ч дамжуулахгүй бол бүгдийг нь устгачихдаг байгаа.
         await CategoryModel.deleteMany();
+        await BookModel.deleteMany();
         console.log("Өгөгдлийг mongooseDB-ээс устгалаа...");
        } catch(err) {
         console.log(err);
